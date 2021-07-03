@@ -2,10 +2,11 @@ import styled from "@emotion/styled";
 import SocialIcons from "./SocialIcons";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import Link from "next/link"
+import { useState } from "react";
 
 const footerNav = [
   {
-    name: "quicklnks",
+    name: "quicklinks",
     list: ["Smoothies", "Oats", "Smoothie Bowls", "Supermeals", "Falafel Pops"]
   },
   {
@@ -58,11 +59,20 @@ const FooterWrapper = styled.footer`
       width: 15ch;
       transform: translateX(-.5rem);
     }
-    
-    .foot-nav {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 .5rem 0 0 ;
+    section {
+
+      .foot-nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 .5rem 0 0 ;
+        position: relative;
+      }
+      .dropdown {
+        h6 {
+          font-weight: 400;
+          margin: 0;
+        }
+      }
     }
     .canada-flag {
       margin: .5rem auto 1rem;
@@ -85,6 +95,12 @@ const FooterWrapper = styled.footer`
       display: none;
     }
     .footer-desktop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+
+      .top {
       display: flex;
       /* position: relative; */
       .links, .outer-links {
@@ -112,35 +128,53 @@ const FooterWrapper = styled.footer`
           }
         }
       }
+      }
       .outer-links {
         .footer-logo {
           transform: translateX(-.5rem);
         }
-        .region {
-            display: flex;
-            /* background: red; */
-            align-items: center;
-          .canada-flag-desktop {
-            margin: 0 1rem;
-            height: 27px;
-            width: 42px;            
-          }
+      }
+      .region {
+          display: flex;
+          /* background: red; */
+          align-items: center;
+        .canada-flag-desktop {
+          margin: 0 1rem;
+          height: 27px;
+          width: 42px;            
         }
       }
     }
-  }
-  .credits {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    left: 0;
+    .credits {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+    }
   }
 `;
 
 
 const mailchimpUrl = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
 
+const NavDropDown = ({ dropdownItems }) => {
+  return (
+    <div className="dropdown">
+      {dropdownItems.list.map((item, index) => (
+        <h6>{item}</h6>
+      ))}
+    </div>
+  )
+}
 
+const FooterArrow = styled.img`
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transform: ${({ navOpen }) => navOpen ? "rotate(90deg) translateX(-60%)" : ""};
+  transition: .1s;
+`;
 
 const Footer = () => {
   return (
@@ -154,12 +188,27 @@ const Footer = () => {
           />
         </div>
         <SocialIcons />
-        {footerNav.map((item, index) => (
-          <div className="foot-nav" key={index}>
-            <h3>{item.name}</h3>
-            <img src="/footer-arrow.svg" alt="arrow" />
-          </div>
-        ))}
+        {footerNav.map((item, index) => {
+          const [navOpen, setNavOpen] = useState(false);
+          const [dropdownItems, setDropdownItems] = useState();
+          const openNav = (itemClicked) => {
+            setDropdownItems(() => itemClicked);
+            setNavOpen(!navOpen)
+            console.log({ dropdownItems })
+          };
+
+          return (
+            <section>
+              <div className="foot-nav" key={index} onClick={() => openNav(item)}>
+                <h3>{item.name}</h3>
+                <FooterArrow src="/footer-arrow.svg" alt="arrow" navOpen={navOpen} />
+              </div>
+              {navOpen && (
+                <NavDropDown dropdownItems={dropdownItems} />
+              )}
+            </section>
+          )
+        })}
         <img src="/canadaFlag.png" alt="canada flag" className="canada-flag" />
         <div className="credits">
           <p>© REVIVE ORGANICS INC. 2020</p>
@@ -167,32 +216,37 @@ const Footer = () => {
       </section>
 
       <section className="footer-desktop">
-        <div className="links">
+        <div className="top">
 
-          {footerNav.map((title, index) => (
-            <div className="foot-nav" key={index}>
-              <h3>{title.name}</h3>
-              {title.list.map((item, i) => (
-                <Link key={i} href="">
-                  <h4>{item}</h4>
-                </Link>
-              ))}
+          <div className="links">
+
+            {footerNav.map((title, index) => (
+              <div className="foot-nav" key={index}>
+                <h3>{title.name}</h3>
+                {title.list.map((item, i) => (
+
+                  <Link key={i} href="">
+                    <h4>{item}</h4>
+                  </Link>
+                ))}
+              </div>
+            ))}
+          </div>
+          <div className="outer-links">
+            <img src="/footerLogo.png" alt="Revived Foods Logo" className="footer-logo" />
+            <h5>JOIN OUR MAILING LIST FOR NEWS AND DISCOUNTS</h5>
+            <div className="subscribe">
+              <MailchimpSubscribe
+                url={mailchimpUrl}
+              />
             </div>
-          ))}
+            <SocialIcons />
+          </div>
         </div>
-        <div className="outer-links">
-          <img src="/footerLogo.png" alt="Revived Foods Logo" className="footer-logo" />
-          <h5>JOIN OUR MAILING LIST FOR NEWS AND DISCOUNTS</h5>
-          <div className="subscribe">
-            <MailchimpSubscribe
-              url={mailchimpUrl}
-            />
-          </div>
-          <SocialIcons />
-          <div className="region">
-            <p>Your country/region:</p>
-            <img src="/canadaFlag.png" alt="canada flag" className="canada-flag-desktop" />
-          </div>
+
+        <div className="region">
+          <p>Your country/region:</p>
+          <img src="/canadaFlag.png" alt="canada flag" className="canada-flag-desktop" />
         </div>
         <div className="credits">
           <p>© REVIVE ORGANICS INC. 2020</p>

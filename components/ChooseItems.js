@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import BlobNumber from "./BlobNumber";
+import Link from "next/link";
 const boxes = [
   {
     name: "Fruity Box",
@@ -161,7 +162,7 @@ const ChooseItems = () => {
     if (!selectedBox) return "";
     const boxToAssign = boxes.find(element => element.name === selectedBox);
     const itemsToAssign = boxToAssign.itemList;
-    setItems(itemsToAssign);
+    setItems(() => itemsToAssign);
   }
 
   return (
@@ -187,7 +188,7 @@ const ChooseItems = () => {
           )}
         </div>
       )}
-      <button className="continue-button">Continue</button>
+      <button className="continue-button"><Link href="/checkout">Continue</Link></button>
       <p className="fine-print">For bulk orders over 288 cups, please email: wholesale@revivesuperfoods.com</p>
     </ChooseItemsWrapper>
   )
