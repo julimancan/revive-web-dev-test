@@ -11,6 +11,9 @@ const HeaderWrapper = styled.section`
     width: 88px;
     margin: 1rem 0;
   }
+  @media(min-width: 600px) {
+    justify-content: center;
+  }
 `;
 
 const BurgerMenu = styled.nav`
@@ -28,6 +31,9 @@ const BurgerMenu = styled.nav`
   }
   &:before {
     top: 4px;
+  }
+  @media(min-width: 600px) {
+    display: none;
   }
 `;
 const ProfileIcon = styled.div`
@@ -54,6 +60,9 @@ const ProfileIcon = styled.div`
     width: 12.38px;
     height: 12.38px;
     top: 43%;
+  }
+  @media(min-width: 600px) {
+    display: none;
   }
 `;
 const Header = () => {

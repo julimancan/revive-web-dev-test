@@ -27,7 +27,8 @@ const PickQtyWrapper = styled.section`
       margin-left: 1rem;
       position: relative;
       cursor: pointer;
-      width: 70px;
+      width: 5rem;
+      display: flex;
       svg {
         transform: translateY(3px)
       }
@@ -63,6 +64,11 @@ const PickQtyWrapper = styled.section`
       }
     }
   }
+  @media(min-width: 600px) {
+    padding-left: 8rem; 
+    
+  }
+
 `;
 
 const pricePerCup = 5.49;

@@ -19,7 +19,7 @@ const HeroImageWrapper = styled.section`
     background-color: #F6F4F5;
     background-repeat: no-repeat;
     background-position: top right;
-    padding: 10%;
+    padding: 10% 12rem;
   }
 `;
 
