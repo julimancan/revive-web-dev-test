@@ -80,17 +80,25 @@ const WhyReviveWrapper = styled.section`
     flex-direction: column;
     align-items: center;
     background: #F1F0F0;
+    padding: 0 0 2rem;
     .perk {
       /* background: red; */
       display: flex;
-      width: 50%;
+      width: 100%;
       align-items: center;
       justify-content: flex-start;
       white-space: nowrap;
+      padding: 0 1rem;
+      img {
+        aspect-ratio: 1/1;
+        height: 3rem;
+      }
+      h3 {
+        font-size: 1rem;
+      }
     }
   }
 `;
-
 
 const WhyRevive = () => {
   return (
@@ -119,3 +127,6 @@ const WhyRevive = () => {
 };
 
 export default WhyRevive;
+
+
+

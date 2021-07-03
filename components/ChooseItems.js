@@ -37,17 +37,25 @@ padding: 0 .5rem;
       flex-direction: column;
       align-items: center;
       height: fit-content;
+      justify-content: flex-start;
+      padding: .5rem 0;
       * {
         margin: 0;
       }
       img {
         aspect-ratio: 1 / 1;
         width: 80%;
+        min-width: 90px;
       }
       h4 {
         margin: 1rem 0;
+        white-space: nowrap;
+        font-size: clamp(.65rem, -0.875rem + 5.333vw, 1.5rem);
+        
       }
       p {
+        font-size: clamp(.55rem, -0.875rem + 4.333vw, 1rem);
+        text-align: center;
       }
     }
   }
@@ -69,13 +77,13 @@ const ChooseItems = () => {
     <ChooseItemsWrapper>
       <div className="title">
         <BlobNumber number="2" />
-      <h3>Choose Your Items</h3>
+        <h3>Choose Your Items</h3>
       </div>
 
       <div className="boxes">
         {boxes.map((box, index) => (
           <div className="box" key={index}>
-            <img src={box.imagePath} alt={box.name}/>
+            <img src={box.imagePath} alt={box.name} />
             <h4>{box.name}</h4>
             <p>{box.description}</p>
           </div>
