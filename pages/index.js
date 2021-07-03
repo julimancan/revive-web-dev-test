@@ -1,15 +1,18 @@
+import styled from "@emotion/styled";
+import ChooseItems from "../components/ChooseItems";
 import HeroImage from "../components/HeroImage";
 import PickQty from "../components/PickQty";
+import WhyRevive from "../components/WhyRevive";
+
+const HomePageWrapper = styled.main``;
 
 export default function Home() {
   return (
-    <div className="">
-    
-
-      <main className="">
+      <HomePageWrapper>
         <HeroImage/>
         <PickQty />
-      </main>
-    </div>
+        <ChooseItems />
+        <WhyRevive />
+      </HomePageWrapper>
   )
-}
+};

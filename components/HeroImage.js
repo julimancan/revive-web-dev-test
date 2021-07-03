@@ -10,6 +10,7 @@ const HeroImageWrapper = styled.section`
   width: 100%;
   /* padding: 20em; */
   padding: 2rem 1rem;
+
   p {
     max-width: 50%;
   }

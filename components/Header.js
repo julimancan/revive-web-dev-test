@@ -63,9 +63,11 @@ const Header = () => {
         <title>Revive Foods</title>
         <meta name="description" content="Revive Foods Wholesale Landing Page" />
         <link rel="icon" href="/rslogo.ico" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet"/>
       </Head>
       <BurgerMenu />
-      <img className="logo" src="/rslogo.webp" alt="Revive SuperFoods"/>
+      <img className="logo" src="/rslogo.webp" alt="Revive SuperFoods" />
       <ProfileIcon>
 
       </ProfileIcon>
