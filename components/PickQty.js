@@ -7,7 +7,7 @@ import { CartContext } from "../context";
 import { useContext } from "react";
 
 const PickQtyWrapper = styled.section`
-  padding: 0 .5rem;
+  padding: 0 1rem;
   margin-top: 1rem;
   .title, .select-qty {
    display: flex; 
@@ -88,7 +88,6 @@ const PickQty = () => {
     pickingRef.current.scrollIntoView({ behavior: "smooth" })
   }
 
-  // Build Your Box
   // useEffect on load to check if the pick your quantity option was clicked in checkout
   useEffect(() => {
     if (linkClicked === "Choose your plan") {
@@ -97,11 +96,10 @@ const PickQty = () => {
     return () => {
     }
   }, []);
-  
+
   return (
     <PickQtyWrapper
-      ref={pickingRef} 
-      // id={elementId}
+      ref={pickingRef}
     >
       <div className="title">
         <BlobNumber number="1" />

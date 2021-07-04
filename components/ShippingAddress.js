@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import BlobNumber from "./BlobNumber"
 
-
 const ShippingAddressWrapper = styled.section`
   .name-last, .city-postal, .province-phone {
     display: flex;

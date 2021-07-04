@@ -2,16 +2,11 @@ import styled from "@emotion/styled";
 import Link from 'next/link';
 import { retailers, perks } from "./content";
 
-
-
-
-
-
 const WhyReviveWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 .5rem ;
+  padding: 0 1rem ;
   margin: 2rem 0;
   .top {
     display: flex;
@@ -33,13 +28,12 @@ const WhyReviveWrapper = styled.section`
     align-items: center;
     width: 20ch;
     margin: 3rem 0;
-    h3 {
-      text-align: center;
-    }
     * {
       margin: 0;
     }
-    
+    h3 {
+      text-align: center;
+    }
     .pusateri-img {
       margin: 1rem 0;
       width: 100%;

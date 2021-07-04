@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import BlobNumber from "./BlobNumber"
 
-
 const SelectPaymentWrapper = styled.section`
 margin: 2rem 0;
 .buttons {

@@ -6,11 +6,8 @@ import ItemsIncluded from "./IncludedItems";
 import { boxes } from "./content";
 import { CartContext } from "../context";
 
-
-
-
 const ChooseItemsWrapper = styled.section`
-padding: 0 .5rem;
+padding: 0 1rem;
 margin-bottom: 4rem;
   .title {
     display: flex;

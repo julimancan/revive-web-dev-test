@@ -3,7 +3,6 @@ import { useContext, useState } from "react"
 import { CartContext } from "../context";
 import BlobNumber from "./BlobNumber"
 
-
 const ReviewItemsWrapper = styled.section`
   .bottom-area {
     border-top: 1px solid #D6D6D6;
