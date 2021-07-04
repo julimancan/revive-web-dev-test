@@ -24,14 +24,17 @@ const PickQtyWrapper = styled.section`
   .select-qty {
     .selection {
       border: 2px solid #AAAAAA;
-      padding: 0 .2rem .1rem 1rem;
+      /* padding: 0 .2rem .1rem 2rem; */
       margin-left: 1rem;
       position: relative;
       cursor: pointer;
       width: 5rem;
       display: flex;
+      p {
+        margin: 1rem auto;
+      }
       svg {
-        transform: translateY(3px)
+        transform: translate(2px, 3px);
       }
       .options {
         height: 100px;
