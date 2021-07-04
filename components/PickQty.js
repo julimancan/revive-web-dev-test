@@ -65,7 +65,7 @@ const PickQtyWrapper = styled.section`
       }
     }
   }
-  @media(min-width: 600px) {
+  @media(min-width: 1024px) {
     padding-left: 8rem; 
     
   }
