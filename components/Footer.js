@@ -161,7 +161,7 @@ const NavDropDown = ({ dropdownItems }) => {
   return (
     <div className="dropdown">
       {dropdownItems.list.map((item, index) => (
-        <h6>{item}</h6>
+        <h6 key={index}>{item}</h6>
       ))}
     </div>
   )
@@ -198,8 +198,8 @@ const Footer = () => {
           };
 
           return (
-            <section>
-              <div className="foot-nav" key={index} onClick={() => openNav(item)}>
+            <section key={index}>
+              <div className="foot-nav"  onClick={() => openNav(item)}>
                 <h3>{item.name}</h3>
                 <FooterArrow src="/footer-arrow.svg" alt="arrow" navOpen={navOpen} />
               </div>

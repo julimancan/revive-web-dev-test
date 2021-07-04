@@ -74,7 +74,7 @@ const Header = () => {
   const route = useRouter();
   const currentPage = route.pathname;
   return (
-    <HeaderWrapper>
+    <HeaderWrapper currentPage={currentPage}>
       <Head>
         <title>Revive Foods</title>
         <meta name="description" content="Revive Foods Wholesale Landing Page" />
