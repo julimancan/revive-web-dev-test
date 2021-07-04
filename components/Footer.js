@@ -41,7 +41,7 @@ const FooterWrapper = styled.footer`
       }
     }
   .footer-mobile {
-    padding: 0 .5rem;
+    padding: 0 1rem;
     display: flex;
     flex-direction: column;
     .footer-logo {
