@@ -80,7 +80,7 @@ const Header = () => {
         <title>Revive Foods</title>
         <meta name="description" content="Revive Foods Wholesale Landing Page" />
         <link rel="icon" href="/rslogo.ico" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet"/>
       </Head>
       <BurgerMenu currentPage={currentPage} />

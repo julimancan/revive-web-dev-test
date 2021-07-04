@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/dist/client/router";
+import { useContext } from "react";
+import { CartContext } from "../context";
 import { navSteps } from "./content";
+import Link from "next/link";
 
 const NavPosWrapper = styled.section`
   display: flex;
@@ -18,11 +21,11 @@ const NavPosWrapper = styled.section`
     align-items: center;
   }
   h4:last-child {
-    color: ${({currentPage}) => currentPage === "/checkout" && "black"};
+    color: ${({ currentPage }) => currentPage === "/checkout" && "black"};
     position: relative;
     &:after {
       content: "";
-      background: ${({currentPage}) => currentPage === "/checkout" && "black"};
+      background: ${({ currentPage }) => currentPage === "/checkout" && "black"};
       width: 100%;
       height: 2px;
       position: absolute;
@@ -36,10 +39,26 @@ const NavPosWrapper = styled.section`
 const NavPosition = () => {
   const router = useRouter();
   const currentPage = router.pathname;
+  
+  // gets the global setState for the linkclicked
+  let { setLinkClicked } = useContext(CartContext);
+  
+
+  // sets the state of the link clicked to the step the user clicked
+  const navClickHandler = (step) => {
+    setLinkClicked(step);
+  }
+
   return (
     <NavPosWrapper className="nav-position" currentPage={currentPage}>
       {navSteps.map((step, index) => (
-        <h4 key={index}>{step}</h4>
+        <h4
+          key={index}
+          onClick={() => navClickHandler(step)}
+        >
+          {step === "Checkout" ? step : (
+            <Link href="/">{step}</Link>
+          )}</h4>
       ))}
     </NavPosWrapper>
   )

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BlobNumber from "./BlobNumber";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi"
 import { boxSizes } from "./content";
@@ -72,14 +72,37 @@ const PickQtyWrapper = styled.section`
 `;
 
 const PickQty = () => {
-
-  // gets the global state
-  let { cupQty, setCupQty, pricePerCup } = useContext(CartContext);
-
+  // state to control the drop down options
   const [selectionOpen, setSelectionOpen] = useState(false);
 
+  // loads the global context 
+  let { cupQty, setCupQty, pricePerCup, linkClicked } = useContext(CartContext);
+
+
+  // reference to scroll into view when clicked from the checkout page
+  const pickingRef = useRef(null);
+
+
+  // function to scroll into view
+  const scrollToPicking = () => {
+    pickingRef.current.scrollIntoView({ behavior: "smooth" })
+  }
+
+  // Build Your Box
+  // useEffect on load to check if the pick your quantity option was clicked in checkout
+  useEffect(() => {
+    if (linkClicked === "Choose your plan") {
+      scrollToPicking();
+    }
+    return () => {
+    }
+  }, []);
+  
   return (
-    <PickQtyWrapper>
+    <PickQtyWrapper
+      ref={pickingRef} 
+      // id={elementId}
+    >
       <div className="title">
         <BlobNumber number="1" />
         <h3>Pick your quantity</h3>

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import BlobNumber from "./BlobNumber";
 import Link from "next/link";
 import ItemsIncluded from "./IncludedItems";
@@ -80,9 +80,16 @@ margin-bottom: 4rem;
 
 
 const ChooseItems = () => {
+  // reference to scroll into view when clicked from the checkout page
+  const chooseRef = useRef(null); 
+
+   // function to scroll into view
+   const scrollToChoose = () => {
+    chooseRef.current.scrollIntoView({ behavior: "smooth" })
+  }
 
   // gets the global state
-  let { boxInCart, setBoxInCart } = useContext(CartContext);
+  let { boxInCart, setBoxInCart, linkClicked } = useContext(CartContext);
 
   // tracks the state to show what's included in the boxes
   const [boxShowing, setBoxShowing] = useState(false);
@@ -100,10 +107,19 @@ const ChooseItems = () => {
     const boxToAssign = boxes.find(element => element.name === name);
     const itemsToAssign = boxToAssign.itemList;
     setItems(() => itemsToAssign);
-  }
+  };
+
+  // useEffect on load to check if the pick your quantity option was clicked in checkout
+  useEffect(() => {
+    if (linkClicked === "Build Your Box") {
+      scrollToChoose();
+    }
+    return () => {
+    }
+  }, []);
 
   return (
-    <ChooseItemsWrapper>
+    <ChooseItemsWrapper ref={chooseRef}>
       <div className="title">
         <BlobNumber number="2" />
         <h3>Choose Your Items</h3>
@@ -121,12 +137,12 @@ const ChooseItems = () => {
       {boxShowing && (
         <div className="items-included">
           {items && (
-            <ItemsIncluded items={items} box={boxInCart}/>
+            <ItemsIncluded items={items} box={boxInCart} />
           )}
         </div>
       )}
       <Link href="/checkout"><button className="continue-button">Continue</button></Link>
-      <p className="fine-print">For bulk orders over 288 cups, please email: <a href="mailto:wholesale@revivesuperfoods.com"> wholesale@revivesuperfoods.com</a></p>
+      <p className="fine-print">For bulk orders over 288 cups, please email: <Link href="mailto:wholesale@revivesuperfoods.com"> wholesale@revivesuperfoods.com</Link></p>
     </ChooseItemsWrapper>
   )
 };
