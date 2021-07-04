@@ -112,7 +112,7 @@ const ReviewItems = ({ deliveryDate }) => {
           </div>
           <div className="line">
             <span>Subtotal</span>
-            <p className="right-side">${subtotal}</p>
+            <p className="right-side">${subtotal.toFixed(2)}</p>
           </div>
         </div>
         <div className="confirmation">
