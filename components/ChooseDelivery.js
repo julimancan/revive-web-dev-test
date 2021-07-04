@@ -10,6 +10,9 @@ const ChooseDeliveryWrapper = styled.section`
     color: #A0A0A0;
     margin: 1ch 0;
   }
+  select {
+    padding: 0 1ch;
+  }
   textarea {
     width: 100%;
     margin: 1ch 0;

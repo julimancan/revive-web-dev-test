@@ -8,7 +8,7 @@ import SelectPayment from "../components/SelectPayment";
 import ShippingAddress from "../components/ShippingAddress";
 
 const CheckoutWrapper = styled.main`
-  padding: 0.5rem;
+  padding: 1rem;
   max-width: 1000px;
 
   input, select {
