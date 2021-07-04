@@ -83,9 +83,20 @@ const WhyReviveWrapper = styled.section`
       }
 
     }
+
+  }
+  @media(min-width: 800px) {
+    padding: 0 8rem;
+    .top {
+      flex-direction: row;
+      img {
+        height: 35vh;
+        margin-right: 4rem;
+      }
+    }
     .perks {
       flex-direction: row;
-      padding: 1rem 8rem;
+      padding: 2rem 8rem;
       .perk {
         flex-direction: column;
         img {
@@ -95,16 +106,6 @@ const WhyReviveWrapper = styled.section`
         h3 {
           margin: 0;
         }
-      }
-    }
-  }
-  @media(min-width: 800px) {
-    padding: 0 8rem;
-    .top {
-      flex-direction: row;
-      img {
-        height: 35vh;
-        margin-right: 4rem;
       }
     }
   }
