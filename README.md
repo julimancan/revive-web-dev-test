@@ -8,7 +8,7 @@ First, install dependencies
 npm install
 ```
 
-### 2. MailChimp for email subscriptions
+### 2. Set up Mailchimp for email subscriptions
 Second, create a [mailchimp](https://www.mailchimp.com) account, then go to Create, open the  'Sign up form' and click on the 'Embedded Form' option. 
 
 Click Begin.
@@ -27,11 +27,12 @@ and create ```NEXT_PUBLIC_MAILCHIMP_URL``` environment variable and assign it th
 NEXT_PUBLIC_MAILCHIMP_URL=https://gmail.us6.list-manage.com/subscribe/post?u=8ad0ea4efed0d98add6eb2617&amp;id=******
 ```
 
-Last, run the development server:
+### 3. Run the server
 
 ```bash
 npm run dev
 ```
 
+### 4. Open with your browser
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
