@@ -9,6 +9,7 @@ import { footerNav } from "./content";
 const mailchimpUrl = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
 
 const FooterWrapper = styled.footer`
+  overflow: hidden;
   .subscribe {
       width: 100%;
       overflow: hidden;
@@ -76,6 +77,8 @@ const FooterWrapper = styled.footer`
       display: flex;
       justify-content: center;
       color: #A9A9A9;
+      width: 100vw;
+      transform: translateX(-1rem)
     }
   @media(min-width: 1024px) {
     padding: 2rem 8rem;
