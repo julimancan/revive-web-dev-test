@@ -15,16 +15,16 @@ Click Begin.
 
 In the "Copy/Paste Onto Your Site" section look for the form element:
 ```
-<form action="https://gmail.us6.list-manage.com/subscribe/post?u=8ad0ea4efed0d98add6eb2617&amp;id=******" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+<form action="https://gmail.us6.list-manage.com/subscribe/post?u=8ad0ea4efe************&amp;id=******" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 ```
 copy the string inside the action attribute
 
-In your root folder create a .env.local file on the root of your folders
+then, in the root of your app create a .env.local file
 
-and create ```NEXT_PUBLIC_MAILCHIMP_URL``` environment variable and assign it the string you just copied from mailchimp:
+create the ```NEXT_PUBLIC_MAILCHIMP_URL``` environment variable and assign it the string you just copied from mailchimp:
 
 ```
-NEXT_PUBLIC_MAILCHIMP_URL=https://gmail.us6.list-manage.com/subscribe/post?u=8ad0ea4efed0d98add6eb2617&amp;id=******
+NEXT_PUBLIC_MAILCHIMP_URL=https://gmail.us6.list-manage.com/subscribe/post?u=8ad0ea4efe************&amp;id=******
 ```
 
 ### 3. Run the server
