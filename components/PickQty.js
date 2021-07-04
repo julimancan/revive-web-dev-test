@@ -2,7 +2,10 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import BlobNumber from "./BlobNumber";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi"
-const sizes = [48, 72, 96, 120, 144];
+import { boxSizes } from "./content";
+import { CartContext } from "../context";
+import { useContext } from "react";
+
 const PickQtyWrapper = styled.section`
   padding: 0 .5rem;
   margin-top: 1rem;
@@ -14,13 +17,11 @@ const PickQtyWrapper = styled.section`
     font-weight: 200;
   }
   .title {
-    /* margin: 2rem 0; */
     h3 {
       margin-left: 1rem;
     }
   }
   .select-qty {
-    /* display: flex; */
     .selection {
       border: 2px solid #AAAAAA;
       padding: 0 .2rem .1rem 1rem;
@@ -68,13 +69,15 @@ const PickQtyWrapper = styled.section`
     padding-left: 8rem; 
     
   }
-
 `;
 
-const pricePerCup = 5.49;
 const PickQty = () => {
-  const [selectedQty, setSelectedQty] = useState(sizes[0]);
+
+  // gets the global state
+  let { cupQty, setCupQty, pricePerCup } = useContext(CartContext);
+
   const [selectionOpen, setSelectionOpen] = useState(false);
+
   return (
     <PickQtyWrapper>
       <div className="title">
@@ -84,11 +87,11 @@ const PickQty = () => {
       <div className="select-qty">
         <h4>Quantity:</h4>
         <div className="selection" onClick={() => setSelectionOpen(!selectionOpen)}>
-          <p><strong>{selectedQty}</strong> {selectionOpen ? <FiChevronUp /> : <FiChevronDown />}</p>
+          <p><strong>{cupQty}</strong> {selectionOpen ? <FiChevronUp /> : <FiChevronDown />}</p>
           {selectionOpen && (
             <div className="options">
-              {sizes.map((size, index) => (
-                <div className="size" key={index} onClick={() => setSelectedQty(size)}><p>{size}</p></div>
+              {boxSizes.map((size, index) => (
+                <div className="size" key={index} onClick={() => setCupQty(size)}><p>{size}</p></div>
               ))}
             </div>
           )}

@@ -3,21 +3,11 @@ import SocialIcons from "./SocialIcons";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import Link from "next/link"
 import { useState } from "react";
+import NavDropDown from "./NavDropDown";
+import { footerNav } from "./content";
 
-const footerNav = [
-  {
-    name: "quicklinks",
-    list: ["Smoothies", "Oats", "Smoothie Bowls", "Supermeals", "Falafel Pops"]
-  },
-  {
-    name: "our company",
-    list: ["Our Story", "Rewards", "Blog", "Press", "Terms & Privacy"]
-  },
-  {
-    name: "support",
-    list: ["Wholesale", "FAQ", "Contact"]
-  },
-]
+const mailchimpUrl = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
+
 const FooterWrapper = styled.footer`
   .subscribe {
       width: 100%;
@@ -39,7 +29,6 @@ const FooterWrapper = styled.footer`
           border: none;
           color: transparent;
           position: relative;
-          /* align-self: flex-end; */
           width: 10%;
           &:before {
             content: ">";
@@ -102,7 +91,6 @@ const FooterWrapper = styled.footer`
 
       .top {
       display: flex;
-      /* position: relative; */
       .links, .outer-links {
         width: 50%;
         padding: 2rem 2rem;
@@ -136,7 +124,6 @@ const FooterWrapper = styled.footer`
       }
       .region {
           display: flex;
-          /* background: red; */
           align-items: center;
         .canada-flag-desktop {
           margin: 0 1rem;
@@ -155,18 +142,6 @@ const FooterWrapper = styled.footer`
 `;
 
 
-const mailchimpUrl = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
-
-const NavDropDown = ({ dropdownItems }) => {
-  return (
-    <div className="dropdown">
-      {dropdownItems.list.map((item, index) => (
-        <h6 key={index}>{item}</h6>
-      ))}
-    </div>
-  )
-}
-
 const FooterArrow = styled.img`
   position: absolute;
   right: 1rem;
@@ -175,6 +150,8 @@ const FooterArrow = styled.img`
   transform: ${({ navOpen }) => navOpen ? "rotate(90deg) translateX(-60%)" : ""};
   transition: .1s;
 `;
+
+
 
 const Footer = () => {
   return (
@@ -194,7 +171,6 @@ const Footer = () => {
           const openNav = (itemClicked) => {
             setDropdownItems(() => itemClicked);
             setNavOpen(!navOpen)
-            console.log({ dropdownItems })
           };
 
           return (

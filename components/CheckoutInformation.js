@@ -1,23 +1,6 @@
 import styled from "@emotion/styled";
+import { checkoutGridElements } from "./content";
 
-const gridElements = [
-  {
-    name: "24/7 Customer Support",
-    img: "/customerSupport.png"
-  },
-  {
-    name: "Change Your Cups",
-    img: "/changeYourCups.png"
-  },
-  {
-    name: "Skip Your Upcoming Delivery",
-    img: "/skipDelivery.png"
-  },
-  {
-    name: "Change Your Plan",
-    img: "/changeYourPlan.png"
-  },
-];
 
 
 const CheckoutInformationWrapper = styled.section`
@@ -38,7 +21,7 @@ const CheckoutInformationWrapper = styled.section`
 const CheckoutInformation = () => {
   return (
     <CheckoutInformationWrapper>
-        {gridElements.map((element, index) => (
+        {checkoutGridElements.map((element, index) => (
           <img src={element.img} alt={element.name} key={index}/>
         ))}
     </CheckoutInformationWrapper>

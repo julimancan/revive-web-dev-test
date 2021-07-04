@@ -1,40 +1,17 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import BlobNumber from "./BlobNumber";
 import Link from "next/link";
-const boxes = [
-  {
-    name: "Fruity Box",
-    description: "Perfect for the entire family",
-    imagePath: "/boxes/fruity-box.png",
-    itemList: ["pink dragon", "hint of mint", "pink dragon", "hint of mint", "pink dragon", "hint of mint", "pink dragon", "hint of mint", "pink dragon"]
-  },
-  {
-    name: "Best Sellers Box",
-    description: "Our superfoodies' favorites",
-    imagePath: "/boxes/best-seller-box.png",
-    itemList: ["pink dragon", "pink dragon", "pink dragon", "pink dragon", "pink dragon", "pink dragon", "pink dragon", "pink dragon", "pink dragon"]
-  },
-  {
-    name: "Fit Box",
-    description: "Our superfoodies' favorites",
-    imagePath: "/boxes/fit-box.png",
-    itemList: ["pink dragon", "hint of mint", "pink dragon", "hint of mint", "pink dragon", "hint of mint", "pink dragon", "hint of mint", "pink dragon"]
-  },
-];
+import ItemsIncluded from "./IncludedItems";
+import { boxes } from "./content";
+import { CartContext } from "../context";
 
-const itemsIncluded = {
-  "pink dragon": {
-    name: "pink dragon",
-    img: "/boxes/pink.png"
-  },
-  "hint of mint": {
-    name: "hint of mint",
-    img: "/boxes/mint.png"
-  },
-}
+
+
+
 const ChooseItemsWrapper = styled.section`
 padding: 0 .5rem;
+margin-bottom: 4rem;
   .title {
     display: flex;
     align-items: center;
@@ -78,89 +55,49 @@ padding: 0 .5rem;
   .continue-button {
     background: #FEE343;
     border: none;
-    padding: .5rem 2rem;
+    padding: .8rem 2rem;
     margin: 1rem 0 0 0;
+    cursor: pointer;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
   }
   .fine-print {
     font-size: clamp(.5rem, -0.875rem + 3.333vw, .7rem);
-
+    a {
+      border-bottom: 1px solid;
+    }
   }
-  @media(min-width: 600px) {
+  @media(min-width: 1024px) {
     padding-left: 8rem;
     .boxes {
-      width: 60%;
+      width: 70%;
     }
   }
 `;
 
-const IncludedItemsWrapper = styled.div`
-    border: 2px solid #C4C4C4;
-    border-radius: 10px;
-    padding: 1rem 1rem .7rem;
-    display: flex;
-    flex-direction: column;
-    h5 {
-      align-self: center;
-      margin: 0 0 1rem 0;
-    }
-    .grid{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: .5rem;
 
-      .item-included {
-        display: flex;
-        flex-direction: column;
-        h5 {
-          text-transform: uppercase;
-          font-weight: 400;
-          font-size: clamp(.55rem, -0.875rem + 4.333vw, 1rem);
-          align-self: center;
-        }
-      }
-    }
-    @media(min-width: 800px) {
-      max-width: 90%;
-      .grid {
-        grid-template-columns: repeat(9, 1fr);
-        .item-included {
-          img {
-            aspect-ratio: 1/1;
-            max-width: 70px;
-            align-self: center;
-          }
-          h5 {
-            margin: 0;
-          }
-        }
-      }
-    }
-`
-const ItemsIncluded = ({ items, box }) => {
-  return (
-    <IncludedItemsWrapper>
-      <h5>Items Included in the {box}</h5>
-      <div className="grid">
-        {items && items.map((item, index) => (
-          <div key={index} className="item-included">
-            <img src={itemsIncluded[item].img} alt="" />
-            <h5>
-              {item}
-            </h5>
-          </div>
-        ))}
-      </div>
-    </IncludedItemsWrapper>
-  )
-};
 
 const ChooseItems = () => {
-  const [selectedBox, setSelectedBox] = useState();
+
+  // gets the global state
+  let { boxInCart, setBoxInCart } = useContext(CartContext);
+
+  // tracks the state to show what's included in the boxes
+  const [boxShowing, setBoxShowing] = useState(false);
+
+  // tracks the items included in the box
   const [items, setItems] = useState();
+
+
+  // sets the state to show the box and sets the name of the selected box
   const selectItems = (name) => {
-    setSelectedBox(name);
-    if (!selectedBox) return "";
-    const boxToAssign = boxes.find(element => element.name === selectedBox);
+    setBoxShowing(true);
+    setBoxInCart(name);
+
+    // finds and sets the items included in the box from the boxes content array
+    const boxToAssign = boxes.find(element => element.name === name);
     const itemsToAssign = boxToAssign.itemList;
     setItems(() => itemsToAssign);
   }
@@ -181,15 +118,15 @@ const ChooseItems = () => {
           </div>
         ))}
       </div>
-      {selectedBox && (
+      {boxShowing && (
         <div className="items-included">
           {items && (
-            <ItemsIncluded items={items} box={selectedBox} />
+            <ItemsIncluded items={items} box={boxInCart}/>
           )}
         </div>
       )}
-      <button className="continue-button"><Link href="/checkout">Continue</Link></button>
-      <p className="fine-print">For bulk orders over 288 cups, please email: wholesale@revivesuperfoods.com</p>
+      <Link href="/checkout"><button className="continue-button">Continue</button></Link>
+      <p className="fine-print">For bulk orders over 288 cups, please email: <a href="mailto:wholesale@revivesuperfoods.com"> wholesale@revivesuperfoods.com</a></p>
     </ChooseItemsWrapper>
   )
 };

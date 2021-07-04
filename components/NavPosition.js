@@ -1,12 +1,6 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/dist/client/router";
-
-const steps = [
-  "Choose your plan",
-  "Build Your Box",
-  "Checkout"
-];
-
+import { navSteps } from "./content";
 
 const NavPosWrapper = styled.section`
   display: flex;
@@ -24,10 +18,8 @@ const NavPosWrapper = styled.section`
     align-items: center;
   }
   h4:last-child {
-    /* margin: 0 1rem; */
     color: ${({currentPage}) => currentPage === "/checkout" && "black"};
     position: relative;
-    /* font-weight: 800; */
     &:after {
       content: "";
       background: ${({currentPage}) => currentPage === "/checkout" && "black"};
@@ -44,10 +36,9 @@ const NavPosWrapper = styled.section`
 const NavPosition = () => {
   const router = useRouter();
   const currentPage = router.pathname;
-  console.log(`currentPage`, currentPage)
   return (
     <NavPosWrapper className="nav-position" currentPage={currentPage}>
-      {steps.map((step, index) => (
+      {navSteps.map((step, index) => (
         <h4 key={index}>{step}</h4>
       ))}
     </NavPosWrapper>

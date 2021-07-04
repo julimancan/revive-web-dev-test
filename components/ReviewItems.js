@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { CartContext } from "../context";
 import BlobNumber from "./BlobNumber"
 
 
@@ -12,7 +13,6 @@ const ReviewItemsWrapper = styled.section`
   }
   .line {
     display: flex;
-    /* background: red; */
     align-items: center;
     justify-content: space-between;
     margin: 1ch 0;
@@ -24,8 +24,6 @@ const ReviewItemsWrapper = styled.section`
     .right-side {
       font-size: 1rem;
       font-weight: 600;
-      /* background: blue; */
-      /* font-style: Roboto; */
     }
   }
   .confirmation {
@@ -63,12 +61,21 @@ const ReviewItemsWrapper = styled.section`
   }
 `;
 
-const ReviewItems = ({ currentPlan, deliveryDate, subtotal }) => {
+const ReviewItems = ({ deliveryDate }) => {
+
+  // gets the global state
+  let { cupQty, pricePerCup } = useContext(CartContext);
+
+  // tracks if user has confirmed to read the terms and conditions and error in case they click continue without reading them
   const [confirmed, setConfirmed] = useState(false);
-  const [confirmationError, setConfirmationError] = useState(false)
+  const [confirmationError, setConfirmationError] = useState(false);
+
+  // sets the state of reading confirmation to true when clicked
   const handleCheckboxClick = () => {
     setConfirmed(!confirmed);
-  }
+  };
+
+  // checks if user has confirmed to read terms & conditions if not sets an error with a timeout
   const handleComplete = () => {
     if (confirmed) setConfirmationError(false);
     if (!confirmed) {
@@ -78,8 +85,10 @@ const ReviewItems = ({ currentPlan, deliveryDate, subtotal }) => {
       }, 4000);
       return ;
     }
-    console.log(`confirmed`, confirmed)
-  }
+  };
+
+  // gets the total amount of the cart
+  const subtotal = cupQty * pricePerCup;
   return (
     <ReviewItemsWrapper>
       <div className="title">
@@ -90,7 +99,7 @@ const ReviewItems = ({ currentPlan, deliveryDate, subtotal }) => {
       <div className="top-area">
         <div className="line">
           <span>Current Plan</span>
-          <p className="right-side">{currentPlan} - Weekly</p>
+          <p className="right-side">{cupQty} - Weekly</p>
         </div>
         <div className="line">
           <span>Delivery Day</span>

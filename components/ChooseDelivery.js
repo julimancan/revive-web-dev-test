@@ -1,14 +1,8 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import BlobNumber from "./BlobNumber"
+import { deliveryOptions } from "./content";
 
-const deliveryOptions = [
-  "none",
-  "Leave with concierge",
-  "Leave on front porch",
-  "Leave at back door",
-  "other"
-]
 
 const ChooseDeliveryWrapper = styled.section`
   input {
@@ -16,25 +10,31 @@ const ChooseDeliveryWrapper = styled.section`
     color: #A0A0A0;
     margin: 1ch 0;
   }
-  /* input[type="date"]:not(.has-value):before{
-  color: lightgray;
-  content: attr(placeholder);
-} */
   textarea {
     width: 100%;
     margin: 1ch 0;
+    padding: 1rem;
+    &:focus {
+      outline: none;
+    }
   }
 `;
 
 const ChooseDelivery = () => {
+
+
   const [date, setDate] = useState(Date.now());
   const [dateError, setDateError] = useState(false);
+  
+  // tracks the state of the delivery option selected
   const [selectedDeliveryOption, setSelectedDeliveryOption] = useState(deliveryOptions[0]);
+
+  // tracks custom delivery instrucitons form the user
   const [customDeliveryOption, setCustomDeliveryOption] = useState();
 
+  // sets the starting date and verifies the date is in the future
   const setDateFunction = (inputDate) => {
     const minimumDeliveryDate = Date.now();
-    console.log(`inputDate`, Date.parse(inputDate))
     const parsedInputDate = Date.parse(inputDate);
     if (parsedInputDate < minimumDeliveryDate) {
       setDateError(true);
@@ -43,9 +43,11 @@ const ChooseDelivery = () => {
       }, 4000);
     }
     setDate(inputDate);
-  }
-  function formatDate(date) {
-    var d = new Date(date),
+  };
+
+  // formats the date to be readable
+  const formatDate = (date) => {
+    let d = new Date(date),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
         year = d.getFullYear();

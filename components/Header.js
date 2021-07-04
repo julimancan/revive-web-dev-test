@@ -13,6 +13,7 @@ const HeaderWrapper = styled.section`
     width: 88px;
     margin: 1rem 0;
     align-self: center;
+    cursor: pointer;
   }
   @media(min-width: 600px) {
     justify-content: center;

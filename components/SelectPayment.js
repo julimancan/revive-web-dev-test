@@ -35,7 +35,6 @@ margin: 2rem 0;
   }
   input {
     border: none;
-    /* color: #A0A0A0; */
     height: 80%;
     &:focus {
       outline: none;

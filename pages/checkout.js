@@ -22,7 +22,6 @@ const CheckoutWrapper = styled.main`
     color: #A0A0A0;
   }
   section {
-    /* margin: 2rem 0; */
     * {
       padding: 0;
       margin: 0;
@@ -78,7 +77,7 @@ const checkout = () => {
           <ChooseDelivery />
         </div>
         <div className="right-panel">
-          <ReviewItems currentPlan="9 items" deliveryDate="Tuesday" subtotal="63" />
+          <ReviewItems deliveryDate="Tuesday"/>
         </div>
       </div>
       <CheckoutInformation />

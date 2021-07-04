@@ -2,11 +2,10 @@ import styled from "@emotion/styled"
 import BlobNumber from "./BlobNumber"
 
 
-const CreateAccWrapper = styled.section`
-
-`;
+const CreateAccWrapper = styled.section``;
 
 const CreateAccount = () => {
+  
   return (
     <CreateAccWrapper>
       <div className="title">

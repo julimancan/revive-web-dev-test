@@ -1,45 +1,11 @@
 import styled from "@emotion/styled";
 import Link from 'next/link';
+import { retailers, perks } from "./content";
 
 
 
-const retailers = [
-  {
-    name: "pusateri's",
-    link: "https://www.pusateris.com",
-    image: "/pusateris.png"
-  },
-  {
-    name: "pusateri's",
-    link: "https://www.pusateris.com",
-    image: "/pusateris.png"
-  },
-  {
-    name: "pusateri's",
-    link: "https://www.pusateris.com",
-    image: "/pusateris.png"
-  },
-]
 
 
-const perks = [
-  {
-    name: "MEALS READY IN MINUTES",
-    icon: "/perks-icon/clock.png"
-  },
-  {
-    name: "CHEF CRAFTED",
-    icon: "/perks-icon/chef-hat.png"
-  },
-  {
-    name: "PRESERVATIVE-FREE",
-    icon: "/perks-icon/hand.png"
-  },
-  {
-    name: "ALWAYS FREE SHIPPING",
-    icon: "/perks-icon/truck.png"
-  },
-]
 
 const WhyReviveWrapper = styled.section`
   display: flex;
@@ -66,6 +32,7 @@ const WhyReviveWrapper = styled.section`
     flex-direction: column;
     align-items: center;
     width: 20ch;
+    margin: 3rem 0;
     h3 {
       text-align: center;
     }
@@ -86,9 +53,8 @@ const WhyReviveWrapper = styled.section`
     flex-direction: column;
     align-items: center;
     background: #F1F0F0;
-    padding: 0 0 1rem;
+    padding: 2rem 0 2rem;
     .perk {
-      /* background: red; */
       display: flex;
       width: 100%;
       align-items: center;
@@ -101,7 +67,6 @@ const WhyReviveWrapper = styled.section`
       }
       h3 {
         font-size: 1rem;
-        /* margin: 0; */
       }
     }
   }
