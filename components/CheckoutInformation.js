@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 
 const gridElements = [
   {
@@ -18,17 +19,29 @@ const gridElements = [
   },
 ];
 
+
+const CheckoutInformationWrapper = styled.section`
+  display: grid;
+  grid-template-columns: repeat(2, 45%);
+  margin-bottom: 2rem;
+  img {
+    aspect-ratio: 1/1;
+    width: 1fr;
+  }
+  @media(min-width: 768px) {
+    margin: 4rem 0 0 0;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+`;
+
 const CheckoutInformation = () => {
   return (
-    <section>
-      <h4>You can skip or pause a delivery any time!</h4>
-      <p>*Just be sure to make any changes before 9 AM on Thursdays. For holidays, expect your order to be delivered a day later or earlier. We will email you with tracking information to track your order - no hassles!</p>
-      <div className="graphic-grid">
+    <CheckoutInformationWrapper>
         {gridElements.map((element, index) => (
           <img src={element.img} alt={element.name} key={index}/>
         ))}
-      </div>
-    </section>
+    </CheckoutInformationWrapper>
   )
 };
 

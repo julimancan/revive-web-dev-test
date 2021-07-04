@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { useState } from "react";
 import BlobNumber from "./BlobNumber"
 
@@ -8,6 +9,23 @@ const deliveryOptions = [
   "Leave at back door",
   "other"
 ]
+
+const ChooseDeliveryWrapper = styled.section`
+  input {
+    padding: 0 1ch;
+    color: #A0A0A0;
+    margin: 1ch 0;
+  }
+  /* input[type="date"]:not(.has-value):before{
+  color: lightgray;
+  content: attr(placeholder);
+} */
+  textarea {
+    width: 100%;
+    margin: 1ch 0;
+  }
+`;
+
 const ChooseDelivery = () => {
   const [date, setDate] = useState(Date.now());
   const [dateError, setDateError] = useState(false);
@@ -40,7 +58,7 @@ const ChooseDelivery = () => {
     return [year, month, day].join('-');
 }
   return (
-    <section>
+    <ChooseDeliveryWrapper>
       <div className="title">
         <BlobNumber number="4" />
         <h3>CHOOSE YOUR DELIVERY DAY</h3>
@@ -49,7 +67,7 @@ const ChooseDelivery = () => {
         value={date}
         min={formatDate(new Date(Date.now()))} max="2022-12-31"
         onChange={(e) => setDateFunction(e.target.value)}
-
+        placeholder="Tuesday, April 6th 2021"
       />
       {dateError && (
         <div>Please choose a date in the future</div>
@@ -62,7 +80,7 @@ const ChooseDelivery = () => {
       {selectedDeliveryOption === "other" && (
         <textarea name="customDeliveryOption" id="customDeliveryOption" onChange={(e) => setCustomDeliveryOption(e.target.value)} rows="10"></textarea>
       )}
-    </section>
+    </ChooseDeliveryWrapper>
   )
 };
 

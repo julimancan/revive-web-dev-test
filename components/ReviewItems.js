@@ -1,5 +1,67 @@
+import styled from "@emotion/styled";
 import { useState } from "react"
 import BlobNumber from "./BlobNumber"
+
+
+const ReviewItemsWrapper = styled.section`
+  .bottom-area {
+    border-top: 1px solid #D6D6D6;
+    border-radius: 0;
+    padding-top: .7rem;
+    margin-top: 1rem;
+  }
+  .line {
+    display: flex;
+    /* background: red; */
+    align-items: center;
+    justify-content: space-between;
+    margin: 1ch 0;
+    span {
+      font-family: Roboto;
+      font-weight: 300;
+      font-size: 1rem;
+    }
+    .right-side {
+      font-size: 1rem;
+      font-weight: 600;
+      /* background: blue; */
+      /* font-style: Roboto; */
+    }
+  }
+  .confirmation {
+    display: flex;
+    align-items: center;
+    input {
+      width: 14px;
+      aspect-ratio: 1/1;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+    p {
+      font-size: 9px;
+      a {
+        border-bottom: 1px solid;
+        border-radius: 0;
+
+      }
+    }
+  }
+  .complete-btn {
+    background: #FEE343;
+    display: block;
+    width: 100%;
+    border: none;
+    height: 3rem;
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 1ch 0;
+  }
+  .you-can-stop {
+    font-weight: 600;  
+    margin: 1rem 0 1ch 0;
+  }
+`;
 
 const ReviewItems = ({ currentPlan, deliveryDate, subtotal }) => {
   const [confirmed, setConfirmed] = useState(false);
@@ -19,7 +81,7 @@ const ReviewItems = ({ currentPlan, deliveryDate, subtotal }) => {
     console.log(`confirmed`, confirmed)
   }
   return (
-    <section>
+    <ReviewItemsWrapper>
       <div className="title">
         <BlobNumber number="5" />
         <h3>REVIEW</h3>
@@ -46,14 +108,17 @@ const ReviewItems = ({ currentPlan, deliveryDate, subtotal }) => {
         </div>
         <div className="confirmation">
           <input type="checkbox" onClick={handleCheckboxClick}/>
-          <p className="conf-text">I’ve read and accept the terms and conditions & privacy policy.</p>
+          <p className="conf-text">I’ve read and accept the <a href="">terms and conditions</a> & <a href="">privacy policy.</a></p>
         </div>
       </div>
-      <button onClick={handleComplete}>COMPLETE</button>
+      <button className="complete-btn" onClick={handleComplete}>COMPLETE</button>
       {confirmationError && (
         <div className="confirmation-error">Please Read and Accept the terms and conditions</div>
       )}
-    </section>
+      <p className="you-can-stop">You can skip or pause a delivery any time!</p>
+      <p>*Just be sure to make any changes before 9 AM on Thursdays. For holidays, expect your order to be delivered a day later or earlier. We will email you with tracking information to track your order - no hassles!</p>
+
+    </ReviewItemsWrapper>
   )
 }
 

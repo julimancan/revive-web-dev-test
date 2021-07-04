@@ -10,7 +10,7 @@ const LayoutWrapper = styled.div`
     font-size: clamp(1.2rem, -0.875rem + 5.333vw, 2rem);
   }
   h3 {
-    font-size: clamp(1rem, -0.875rem + 5.333vw, 1.8rem);
+    font-size: clamp(1rem, -0.875rem + 5.333vw, 1.7rem);
     text-transform: uppercase;
     font-weight: 800;
   }

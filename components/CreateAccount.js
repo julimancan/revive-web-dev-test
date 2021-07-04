@@ -1,17 +1,24 @@
+import styled from "@emotion/styled"
 import BlobNumber from "./BlobNumber"
+
+
+const CreateAccWrapper = styled.section`
+
+`;
 
 const CreateAccount = () => {
   return (
-    <section>
+    <CreateAccWrapper>
       <div className="title">
         <BlobNumber number="1" />
         <h3>CREATE YOUR ACCOUNT</h3>
       </div>
-      <label>email</label>
+
+      <label>Email</label>
       <input id="email" type="text"/>
-      <label>password</label>      
+      <label>Password</label>      
       <input id="password" type="text"/>
-    </section>
+    </CreateAccWrapper>
   )
 }
 

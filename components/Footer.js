@@ -88,7 +88,7 @@ const FooterWrapper = styled.footer`
       justify-content: center;
       color: #A9A9A9;
     }
-  @media(min-width: 600px) {
+  @media(min-width: 1024px) {
     padding: 2rem 8rem;
     position: relative;
     .footer-mobile {
